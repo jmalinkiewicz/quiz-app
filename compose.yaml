@@ -1,4 +1,11 @@
 services:
+  backend: 
+    container_name: backend
+    ports: 
+    - "8000:8000"
+    build: 
+      context: /backend
+      dockerfile: Dockerfile
   db:
     container_name: db
     image: postgres:16
