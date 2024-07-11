@@ -1,4 +1,11 @@
 services:
+  frontend:
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    build:
+      context: /frontend
+      dockerfile: Dockerfile
   backend: 
     container_name: backend
     ports: 
