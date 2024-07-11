@@ -6,13 +6,17 @@ services:
     build:
       context: /frontend
       dockerfile: Dockerfile
-  backend: 
+  backend:
     container_name: backend
-    ports: 
-    - "8000:8000"
-    build: 
+    ports:
+      - "8000:8000"
+    build:
       context: /backend
       dockerfile: Dockerfile
+    environment:
+      DATABASE_URL: "postgresql://postgres:postgres@db:5432/postgres"
+    depends_on:
+      - db
   db:
     container_name: db
     image: postgres:16
