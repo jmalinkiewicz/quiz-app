@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const { PrismaClient } = require("@prisma/client");
 const { signUpRouter } = require("./routes/signup");
+const { logInRouter } = require("./routes/login");
 
 const app = express();
 const port = 8000;
@@ -40,6 +41,7 @@ app.get("/users", async (req, res) => {
 });
 
 app.use("/signup", signUpRouter);
+app.use("/login", logInRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
