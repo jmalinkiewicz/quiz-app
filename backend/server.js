@@ -5,6 +5,7 @@ const { signUpRouter } = require("./routes/signup");
 const { logInRouter } = require("./routes/login");
 const { createRouter } = require("./routes/create");
 const cookieParser = require("cookie-parser");
+const { inviteRouter } = require("./routes/invite");
 
 const app = express();
 const port = 8000;
@@ -46,6 +47,7 @@ app.get("/users", async (req, res) => {
 app.use("/signup", signUpRouter);
 app.use("/login", logInRouter);
 app.use("/create", createRouter);
+app.use("/invite", inviteRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
