@@ -3,6 +3,8 @@ const cors = require("cors");
 const { PrismaClient } = require("@prisma/client");
 const { signUpRouter } = require("./routes/signup");
 const { logInRouter } = require("./routes/login");
+const { createRouter } = require("./routes/create");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 const port = 8000;
@@ -10,6 +12,7 @@ const port = 8000;
 const prisma = new PrismaClient();
 
 app.use(express.json());
+app.use(cookieParser());
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -42,6 +45,7 @@ app.get("/users", async (req, res) => {
 
 app.use("/signup", signUpRouter);
 app.use("/login", logInRouter);
+app.use("/create", createRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

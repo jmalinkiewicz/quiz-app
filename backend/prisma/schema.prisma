@@ -18,4 +18,42 @@ model User {
   email String @unique
   name String
   password String
+  quizzes Quiz[]
+}
+
+model Quiz {
+  id String @id @default(cuid())
+  title String
+  description String
+  background Color @default(BLUE)
+  author User @relation(fields: [authorId], references: [id])
+  authorId String
+  questions Question[]
+}
+
+model Question {
+  id String @id @default(cuid())
+  text String
+  quiz Quiz @relation(fields: [quizId], references: [id])
+  quizId String
+  answers Answer[]
+}
+
+model Answer {
+  id String @id @default(cuid())
+  text String
+  isCorrect Boolean
+  question Question @relation(fields: [questionId], references: [id])
+  questionId String
+}
+
+enum Color {
+  RED
+  BLUE
+  GREEN
+  YELLOW
+  PURPLE
+  ORANGE
+  PINK
+  GREY
 }
