@@ -102,4 +102,36 @@ router.post("/", authenticate, async (req, res) => {
   }
 });
 
-exports.inviteRouter = router;
+router.post("/redeem", authenticate, async (req, res) => {
+  try {
+    const { code, userId } = req.body;
+
+    const invite = await prisma.invite.update({
+      where: {
+        code,
+      },
+      data: {
+        user: {
+          connect: {
+            id: userId,
+          },
+        },
+        code: null,
+      },
+    });
+
+    res.json(invite);
+  } catch (e) {
+    let message = "Server error. Please try again.";
+
+    switch (e.code) {
+      case "P2025":
+        message = "Invite code not found.";
+    }
+
+    res.status(500).json({
+      error: message,
+    });
+  }
+}),
+  (exports.inviteRouter = router);
