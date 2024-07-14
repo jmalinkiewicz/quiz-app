@@ -106,6 +106,38 @@ router.post("/redeem", authenticate, async (req, res) => {
   try {
     const { code, userId } = req.body;
 
+    const user = await prisma.user.findUnique({
+      where: {
+        id: userId,
+      },
+      select: {
+        invites: true,
+      },
+    });
+
+    const quiz = await prisma.invite.findUnique({
+      where: {
+        code,
+      },
+      select: {
+        quizId: true,
+      },
+    });
+
+    if (quiz === null) {
+      res.status(404).json({
+        error: "Invite code not found.",
+      });
+      return;
+    }
+
+    if (user.invites.some((invite) => invite.quizId === quiz.quizId)) {
+      res.status(403).json({
+        error: "You have already been invited to this quiz.",
+      });
+      return;
+    }
+
     const invite = await prisma.invite.update({
       where: {
         code,
@@ -123,6 +155,7 @@ router.post("/redeem", authenticate, async (req, res) => {
     res.json(invite);
   } catch (e) {
     let message = "Server error. Please try again.";
+    console.log(e);
 
     switch (e.code) {
       case "P2025":
