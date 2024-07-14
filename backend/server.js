@@ -6,6 +6,7 @@ const { logInRouter } = require("./routes/login");
 const { createRouter } = require("./routes/create");
 const cookieParser = require("cookie-parser");
 const { inviteRouter } = require("./routes/invite");
+const { quizRouter } = require("./routes/quiz");
 
 const app = express();
 const port = 8000;
@@ -48,6 +49,7 @@ app.use("/signup", signUpRouter);
 app.use("/login", logInRouter);
 app.use("/create", createRouter);
 app.use("/invite", inviteRouter);
+app.use("/quiz", quizRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
