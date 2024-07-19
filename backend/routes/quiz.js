@@ -183,4 +183,64 @@ router.post("/submit", authenticate, async (req, res) => {
   }
 });
 
+router.get("/results/:quizId", authenticate, async (req, res) => {
+  try {
+    const { quizId } = req.params;
+    const { userId } = req.body;
+
+    const author = await prisma.quiz.findUnique({
+      where: {
+        id: quizId,
+      },
+      select: {
+        authorId: true,
+      },
+    });
+
+    if (author === null) {
+      res.status(404).json({
+        error: "Quiz not found.",
+      });
+      return;
+    }
+
+    if (author.authorId !== userId) {
+      res.status(403).json({
+        error: "You are not authorized to invite users to this quiz.",
+      });
+      return;
+    }
+
+    const submissions = await prisma.submission.findMany({
+      where: {
+        quizId,
+      },
+      select: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+        answers: true,
+        quizId: true,
+      },
+    });
+
+    if (submissions.length === 0) {
+      res.status(404).json({
+        error: "No submissions found.",
+      });
+      return;
+    }
+
+    res.json(submissions);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      error: "Server error. Please try again.",
+    });
+  }
+});
+
 exports.quizRouter = router;
