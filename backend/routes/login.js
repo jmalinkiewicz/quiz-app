@@ -18,6 +18,13 @@ router.post("/", async (req, res) => {
       where: {
         email: email,
       },
+      select: {
+        id: true,
+        password: true,
+        name: true,
+        quizzes: true,
+        submissions: true,
+      },
     });
 
     if (user !== null) {
@@ -42,6 +49,7 @@ router.post("/", async (req, res) => {
         expiresIn: "4h",
       }
     );
+    const { password, ...user } = queriedUser;
 
     res
       .cookie("token", token, {
@@ -52,6 +60,7 @@ router.post("/", async (req, res) => {
       })
       .json({
         message: "Logged in successfully.",
+        user,
       });
   } else {
     res.status(401).json({
