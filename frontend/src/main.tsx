@@ -10,6 +10,7 @@ import Root from "./routes/root.tsx";
 import { getUser } from "./utils.ts";
 import Login from "./routes/login.tsx";
 import NotFound from "./routes/notFound.tsx";
+import Signup from "./routes/signup.tsx";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
   },
 ]);
 
