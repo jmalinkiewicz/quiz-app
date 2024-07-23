@@ -10,14 +10,18 @@ export default function Login() {
           <div className="flex justify-center pt-6">
             <LoginForm />
           </div>
-          <p className="pt-4">
-            Don't have an account?{" "}
+          <div className="flex max-w-xl items-center gap-4 px-8 pb-4 pt-4">
+            <div className="h-[3px] w-full bg-gray-300"></div>
+            <span className="text-lg font-bold text-gray-400">Or</span>
+            <div className="h-[3px] w-full bg-gray-300"></div>
+          </div>
+          <div className="max-w-xl px-8">
             <Link to="/signup">
-              <span className="font-semibold text-blue-500 hover:underline">
+              <button className="w-full rounded border-2 border-black p-1.5 font-semibold text-black hover:bg-gray-50">
                 Sign Up
-              </span>
+              </button>
             </Link>
-          </p>
+          </div>
         </main>
       </div>
       <div
