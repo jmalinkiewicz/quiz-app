@@ -10,17 +10,19 @@ export default function Login() {
           <div className="flex justify-center pt-6">
             <LoginForm />
           </div>
-          <div className="flex max-w-xl items-center gap-4 px-8 pb-4 pt-4">
-            <div className="h-[3px] w-full bg-gray-300"></div>
-            <span className="text-lg font-bold text-gray-400">Or</span>
-            <div className="h-[3px] w-full bg-gray-300"></div>
-          </div>
-          <div className="max-w-xl px-8">
-            <Link to="/signup">
-              <button className="w-full rounded border-2 border-black p-1.5 font-semibold text-black hover:bg-gray-50">
-                Sign Up
-              </button>
-            </Link>
+          <div className="flex w-full flex-col items-center justify-center">
+            <div className="flex w-full max-w-xl items-center gap-4 px-4 pb-4 pt-4 sm:px-8">
+              <div className="h-[3px] w-full bg-gray-300"></div>
+              <span className="text-lg font-bold text-gray-400">Or</span>
+              <div className="h-[3px] w-full bg-gray-300"></div>
+            </div>
+            <div className="w-full max-w-xl px-4 sm:px-8">
+              <Link to="/signup">
+                <button className="w-full rounded border-2 border-black p-1.5 font-semibold text-black hover:bg-gray-50">
+                  Sign Up
+                </button>
+              </Link>
+            </div>
           </div>
         </main>
       </div>

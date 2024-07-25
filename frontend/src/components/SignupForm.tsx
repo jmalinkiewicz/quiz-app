@@ -64,10 +64,10 @@ export default function SignupForm() {
       onSubmit={handleSubmit}
       className="flex w-full max-w-xl flex-col items-center gap-4 px-4 font-nunito sm:px-8"
     >
-      <label className="flex flex-col gap-2">
+      <label className="flex w-full flex-col gap-2">
         <span className="font-semibold">Username</span>
         <input
-          className="w-64 rounded p-1.5 outline-blue-500 focus:outline-1 sm:w-96"
+          className="w-full rounded p-1.5 outline-blue-500 focus:outline-1 sm:w-96"
           type="text"
           name="email"
           placeholder="Username"
@@ -75,10 +75,10 @@ export default function SignupForm() {
           onChange={(e) => setUsername(e.target.value)}
         />
       </label>
-      <label className="flex flex-col gap-2">
+      <label className="flex w-full flex-col gap-2">
         <span className="font-semibold">E-mail Address</span>
         <input
-          className="w-64 rounded p-1.5 outline-blue-500 focus:outline-1 sm:w-96"
+          className="w-full rounded p-1.5 outline-blue-500 focus:outline-1 sm:w-96"
           type="text"
           name="email"
           placeholder="you@example.com"
@@ -86,10 +86,10 @@ export default function SignupForm() {
           onChange={(e) => setEmail(e.target.value)}
         />
       </label>
-      <label className="flex flex-col gap-2">
+      <label className="flex w-full flex-col gap-2">
         <span className="font-semibold">Password</span>
         <input
-          className="w-64 rounded p-1.5 outline-blue-500 focus:outline-1 sm:w-96"
+          className="w-full rounded p-1.5 outline-blue-500 focus:outline-1 sm:w-96"
           type="password"
           name="email"
           placeholder="password"
@@ -97,10 +97,10 @@ export default function SignupForm() {
           onChange={(e) => setPassword(e.target.value)}
         />
       </label>
-      <label className="flex flex-col gap-2">
+      <label className="flex w-full flex-col gap-2">
         <span className="font-semibold">Confirm Password</span>
         <input
-          className="w-64 rounded p-1.5 outline-blue-500 focus:outline-1 sm:w-96"
+          className="w-full rounded p-1.5 outline-blue-500 focus:outline-1 sm:w-96"
           type="password"
           name="email"
           placeholder="password"
@@ -111,7 +111,7 @@ export default function SignupForm() {
       <button
         disabled={loading}
         type="submit"
-        className="w-64 rounded bg-blue-500 p-1.5 font-semibold text-white hover:bg-blue-600 sm:w-96"
+        className="w-full rounded bg-blue-500 p-1.5 font-semibold text-white hover:bg-blue-600 sm:w-96"
       >
         Sign Up
       </button>
