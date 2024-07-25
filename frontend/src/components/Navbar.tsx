@@ -3,10 +3,16 @@ import ChevronDownIcon from "./icons/ChevronDown";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { getUser } from "../utils";
+import { useQuizzesState } from "../state/quizzes";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const user = getUser();
+
+  const quizzes = useQuizzesState((state) => state);
+
+  const createdQuizzesLength = quizzes.createdQuizzes?.length;
+  const availableQuizzesLength = quizzes.availableQuizzes?.length;
 
   return (
     <>
@@ -54,7 +60,7 @@ export default function Navbar() {
               <button className="px-4 py-4">Settings</button>
             </NavLink>
           </div>
-          <div className="relative flex items-center">
+          <div className="relative flex items-center justify-start">
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="flex gap-2 font-semibold hover:underline"
@@ -73,11 +79,27 @@ export default function Navbar() {
                   exit={{
                     scale: 0,
                   }}
-                  className="absolute right-1 top-20 flex w-32 flex-col items-start gap-1 rounded bg-gray-100 px-4 py-2 text-left font-semibold"
+                  className="absolute right-1 top-20 flex w-36 flex-col items-start gap-1 rounded bg-gray-100 px-4 py-2 text-left font-semibold"
                 >
-                  <Link to="/quizzes">Quizzes</Link>
-                  <Link to="/invites">Invites</Link>
-                  <Link to="/settings">Settings</Link>
+                  <Link to="/quizzes" className="flex gap-2">
+                    <span>My Quizzes</span>
+                    {createdQuizzesLength && (
+                      <span className="rounded bg-slate-300 px-[3px]">
+                        {createdQuizzesLength}
+                      </span>
+                    )}
+                  </Link>
+                  <Link to="/invites" className="flex gap-2">
+                    <span>Invites</span>
+                    {availableQuizzesLength && (
+                      <span className="rounded bg-slate-300 px-[3px]">
+                        {availableQuizzesLength}
+                      </span>
+                    )}
+                  </Link>
+                  <Link to="/settings" className="flex gap-2">
+                    <span>Settings</span>
+                  </Link>
                   <button className="w-full rounded p-1 text-red-500 hover:bg-red-100">
                     Log Out
                   </button>

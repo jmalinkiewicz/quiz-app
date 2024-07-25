@@ -20,6 +20,11 @@ router.get("/available", authenticate, async (req, res) => {
         title: true,
         description: true,
         background: true,
+        author: {
+          select: {
+            name: true,
+          },
+        },
       },
     });
 
@@ -52,6 +57,11 @@ router.get("/created", authenticate, async (req, res) => {
         title: true,
         description: true,
         background: true,
+        author: {
+          select: {
+            name: true,
+          },
+        },
       },
     });
 
