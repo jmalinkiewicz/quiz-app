@@ -5,7 +5,7 @@ export default function Signup() {
   return (
     <div className="flex h-full items-center justify-center px-4 font-nunito sm:px-0">
       <main className="flex w-full flex-col items-center justify-center rounded border-2 bg-slate-100 px-8 py-4 sm:w-auto">
-        <h1 className="pb-8 text-3xl font-bold font-semibold">Sign Up</h1>
+        <h1 className="pb-8 text-3xl font-bold">Sign Up</h1>
         <SignupForm />
         <div className="flex w-full max-w-xl items-center gap-4 px-4 pb-4 pt-4 sm:px-8">
           <div className="h-[3px] w-full bg-gray-300"></div>
