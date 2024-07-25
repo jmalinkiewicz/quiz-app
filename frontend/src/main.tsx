@@ -7,7 +7,6 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Root from "./routes/root.tsx";
-import { getUser } from "./utils.ts";
 import Login from "./routes/login.tsx";
 import NotFound from "./routes/notFound.tsx";
 import Signup from "./routes/signup.tsx";
@@ -24,9 +23,15 @@ const router = createBrowserRouter([
         throw redirect("/login");
       }
 
-      return null;
+      return 1;
     },
     errorElement: <NotFound />,
+    children: [
+      {
+        path: "dashboard",
+        element: <h1>dash</h1>,
+      },
+    ],
   },
   {
     path: "/login",
@@ -38,7 +43,7 @@ const router = createBrowserRouter([
         throw redirect("/");
       }
 
-      return null;
+      return 1;
     },
   },
   {
@@ -51,7 +56,7 @@ const router = createBrowserRouter([
         throw redirect("/");
       }
 
-      return null;
+      return 1;
     },
   },
 ]);
