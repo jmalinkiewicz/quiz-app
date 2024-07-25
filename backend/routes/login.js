@@ -53,7 +53,7 @@ router.post("/", async (req, res) => {
 
     res
       .cookie("token", token, {
-        httpOnly: true,
+        httpOnly: false,
         secure: true,
         path: "/",
         expires: new Date(new Date().getTime() + 4 * 3600000),
