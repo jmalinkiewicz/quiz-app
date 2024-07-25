@@ -11,27 +11,48 @@ import { getUser } from "./utils.ts";
 import Login from "./routes/login.tsx";
 import NotFound from "./routes/notFound.tsx";
 import Signup from "./routes/signup.tsx";
+import Cookies from "js-cookie";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
     loader: () => {
-      const user = getUser();
-      if (user === null) {
+      const cookie = Cookies.get("token");
+
+      if (cookie === undefined) {
         throw redirect("/login");
       }
-      return user;
+
+      return null;
     },
     errorElement: <NotFound />,
   },
   {
     path: "/login",
     element: <Login />,
+    loader: () => {
+      const cookie = Cookies.get("token");
+
+      if (cookie) {
+        throw redirect("/");
+      }
+
+      return null;
+    },
   },
   {
     path: "/signup",
     element: <Signup />,
+    loader: () => {
+      const cookie = Cookies.get("token");
+
+      if (cookie) {
+        throw redirect("/");
+      }
+
+      return null;
+    },
   },
 ]);
 
