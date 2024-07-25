@@ -39,6 +39,38 @@ router.get("/available", authenticate, async (req, res) => {
   }
 });
 
+router.get("/created", authenticate, async (req, res) => {
+  try {
+    const { userId } = req.body;
+
+    const quizzes = await prisma.quiz.findMany({
+      where: {
+        authorId: userId,
+      },
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        background: true,
+      },
+    });
+
+    if (quizzes.length === 0) {
+      res.status(404).json({
+        error: "No quizzes created.",
+      });
+      return;
+    }
+
+    res.json(quizzes);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      error: "Server error. Please try again.",
+    });
+  }
+});
+
 router.get("/start/:quizId", authenticate, async (req, res) => {
   try {
     const { quizId } = req.params;
