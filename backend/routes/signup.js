@@ -11,6 +11,18 @@ router.post("/", async (req, res) => {
   try {
     let { name, email, password } = req.body;
 
+    const userExists = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    if (userExists !== null) {
+      return res.status(400).json({
+        error: "User with this e-mail address already exists.",
+      });
+    }
+
     bcrypt.hash(password, 10, async function (err, hash) {
       if (err) {
         console.log(err);
