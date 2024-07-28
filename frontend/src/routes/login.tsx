@@ -5,7 +5,7 @@ export default function Login() {
   return (
     <div className="flex h-full">
       <div className="h-full w-full xl:w-1/2">
-        <main className="px-4 pt-16 sm:px-48">
+        <main className="px-4 pt-16 sm:px-48 xl:px-16">
           <h1 className="font-nunito text-4xl font-bold">Sign In</h1>
           <div className="flex justify-center pt-6">
             <LoginForm />
