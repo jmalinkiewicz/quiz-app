@@ -1,12 +1,15 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-type Quiz = {
+export type Quiz = {
   id: string;
   title: string;
   description: string;
   background: string;
-  author: string;
+  author: {
+    name: string;
+  };
+  submissions?: [];
 };
 
 interface QuizState {

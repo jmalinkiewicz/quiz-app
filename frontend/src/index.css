@@ -17,3 +17,45 @@ html {
   background: url("https://images.unsplash.com/photo-1523470999338-ff4b713df39b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
   background-size: cover;
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.BLUE {
+  border-bottom: 6px solid #3182ce;
+}
+
+.GREEN {
+  border-bottom: 6px solid #38a169;
+}
+
+.RED {
+  border-bottom: 6px solid #e53e3e;
+}
+
+.YELLOW {
+  border-bottom: 6px solid #f6e05e;
+}
+
+.PURPLE {
+  border-bottom: 6px solid #805ad5;
+}
+
+.ORANGE {
+  border-bottom: 6px solid #dd6b20;
+}
+
+.PINK {
+  border-bottom: 6px solid #f687b3;
+}
+
+.GREY {
+  border-bottom: 6px solid #718096;
+}

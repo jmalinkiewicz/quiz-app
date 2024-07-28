@@ -27,14 +27,6 @@ router.get("/available", authenticate, async (req, res) => {
         },
       },
     });
-
-    if (quizzes.length === 0) {
-      res.status(404).json({
-        error: "No quizzes available.",
-      });
-      return;
-    }
-
     res.json(quizzes);
   } catch (e) {
     console.log(e);
@@ -62,16 +54,9 @@ router.get("/created", authenticate, async (req, res) => {
             name: true,
           },
         },
+        submissions: true,
       },
     });
-
-    if (quizzes.length === 0) {
-      res.status(404).json({
-        error: "No quizzes created.",
-      });
-      return;
-    }
-
     res.json(quizzes);
   } catch (e) {
     console.log(e);
@@ -268,13 +253,6 @@ router.get("/results/:quizId", authenticate, async (req, res) => {
         quizId: true,
       },
     });
-
-    if (submissions.length === 0) {
-      res.status(404).json({
-        error: "No submissions found.",
-      });
-      return;
-    }
 
     res.json(submissions);
   } catch (e) {

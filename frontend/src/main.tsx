@@ -11,6 +11,7 @@ import Login from "./routes/login.tsx";
 import NotFound from "./routes/notFound.tsx";
 import Signup from "./routes/signup.tsx";
 import Cookies from "js-cookie";
+import Dashboard from "./routes/dashboard.tsx";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "dashboard",
-        element: <h1>dash</h1>,
+        element: <Dashboard />,
       },
     ],
   },
