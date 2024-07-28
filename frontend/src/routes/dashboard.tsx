@@ -12,7 +12,7 @@ export default function Dashboard() {
       <h1 className="pt-10 text-3xl font-bold">Hello, {user?.name}</h1>
       <div className="mt-4">
         <h2 className="pb-4 text-lg font-semibold">
-          Available Quizzes:{" "}
+          Invites:{" "}
           <span className="rounded bg-slate-300 px-1.5">
             {quizzes?.length ?? 0}
           </span>
