@@ -1,4 +1,6 @@
+import { useQuizzesState } from "./state/quizzes";
 import { useUserState } from "./state/user";
+import Cookies from "js-cookie";
 
 export const getUser = () => {
   return useUserState.getState().user;
@@ -26,4 +28,13 @@ export const getAvailableQuizzes = async () => {
   });
 
   return await response.json();
+};
+
+export const LogOut = (navigate: (path: string) => void) => {
+  useUserState.getState().resetState();
+  useQuizzesState.getState().resetState();
+
+  Cookies.remove("token");
+
+  navigate("/login");
 };

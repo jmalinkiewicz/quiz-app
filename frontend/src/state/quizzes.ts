@@ -14,6 +14,7 @@ interface QuizState {
   availableQuizzes: Quiz[] | null;
   setCreatedQuizzes: (quizzes: Quiz[]) => void;
   setAvailableQuizzes: (quizzes: Quiz[]) => void;
+  resetState: () => void;
 }
 
 export const useQuizzesState = create<QuizState>()(
@@ -23,6 +24,7 @@ export const useQuizzesState = create<QuizState>()(
       availableQuizzes: null,
       setCreatedQuizzes: (quizzes) => set({ createdQuizzes: quizzes }),
       setAvailableQuizzes: (quizzes) => set({ availableQuizzes: quizzes }),
+      resetState: () => set({ createdQuizzes: null, availableQuizzes: null }),
     }),
     {
       name: "quizzes-storage",

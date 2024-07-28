@@ -1,8 +1,8 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import ChevronDownIcon from "./icons/ChevronDown";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { getUser } from "../utils";
+import { getUser, LogOut } from "../utils";
 import { useQuizzesState } from "../state/quizzes";
 
 export default function Navbar() {
@@ -10,9 +10,14 @@ export default function Navbar() {
   const user = getUser();
 
   const quizzes = useQuizzesState((state) => state);
+  const navigate = useNavigate();
 
   const createdQuizzesLength = quizzes.createdQuizzes?.length;
   const availableQuizzesLength = quizzes.availableQuizzes?.length;
+
+  function handleLogOut() {
+    LogOut(navigate);
+  }
 
   return (
     <>
@@ -100,7 +105,10 @@ export default function Navbar() {
                   <Link to="/settings" className="flex gap-2">
                     <span>Settings</span>
                   </Link>
-                  <button className="w-full rounded p-1 text-red-500 hover:bg-red-100">
+                  <button
+                    onClick={handleLogOut}
+                    className="w-full rounded p-1 text-red-500 hover:bg-red-100"
+                  >
                     Log Out
                   </button>
                 </motion.div>
