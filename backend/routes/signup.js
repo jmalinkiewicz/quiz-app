@@ -11,6 +11,12 @@ router.post("/", async (req, res) => {
   try {
     let { name, email, password } = req.body;
 
+    if (!name || !email || !password) {
+      return res.status(400).json({
+        error: "Please enter all fields.",
+      });
+    }
+
     const userExists = await prisma.user.findUnique({
       where: {
         email,

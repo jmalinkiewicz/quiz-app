@@ -48,6 +48,9 @@ export default function SignupForm() {
           setUser(res.user);
           navigate("/login");
           break;
+        case 400:
+          setError("Invalid data. Please check your inputs.");
+          break;
         default:
           setError("An error occurred. Please try again later.");
           break;
@@ -73,6 +76,7 @@ export default function SignupForm() {
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          required
         />
       </label>
       <label className="flex w-full flex-col gap-2">
@@ -84,6 +88,7 @@ export default function SignupForm() {
           placeholder="you@example.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
       </label>
       <label className="flex w-full flex-col gap-2">
@@ -95,6 +100,7 @@ export default function SignupForm() {
           placeholder="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
       </label>
       <label className="flex w-full flex-col gap-2">
@@ -106,6 +112,7 @@ export default function SignupForm() {
           placeholder="password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
+          required
         />
       </label>
       <button
