@@ -1,6 +1,7 @@
 import SquaresIcon from "../components/icons/Squares";
 import TableIcon from "../components/icons/Table";
-import QuizzesCarousel from "../components/quizzesCarousel";
+import QuizzesCarousel from "../components/QuizzesCarousel";
+import QuizzesTable from "../components/Table/QuizzesTable";
 import { useQuizzesState } from "../state/quizzes";
 import { useViewState } from "../state/view";
 import { getUser } from "../utils";
@@ -16,9 +17,9 @@ export default function Dashboard() {
     <main className="m-auto max-w-screen-2xl">
       <div className="flex justify-between pt-10">
         <h1 className="text-3xl font-bold">Hello, {user?.name}</h1>
-        <div className="flex items-center justify-center rounded-full bg-slate-300 p-[2px] text-black">
+        <div className="flex items-center justify-center rounded-full bg-slate-200 p-[2px] text-black">
           <button
-            className={`rounded-full p-2 transition-colors ${quizzesViewType === "Carousel" ? "bg-slate-400/70" : "hover:bg-slate-400/35"}`}
+            className={`rounded-full p-2 transition-colors ${quizzesViewType === "Carousel" ? "bg-slate-300/90" : "hover:bg-slate-400/35"}`}
             onClick={() =>
               useViewState.getState().setQuizzesViewType("Carousel")
             }
@@ -26,7 +27,7 @@ export default function Dashboard() {
             <SquaresIcon />
           </button>
           <button
-            className={`rounded-full p-2 transition-colors ${quizzesViewType === "Table" ? "bg-slate-400/70" : "hover:bg-slate-400/35"}`}
+            className={`rounded-full p-2 transition-colors ${quizzesViewType === "Table" ? "bg-slate-300/90" : "hover:bg-slate-400/35"}`}
             onClick={() => useViewState.getState().setQuizzesViewType("Table")}
           >
             <TableIcon />
@@ -40,7 +41,12 @@ export default function Dashboard() {
             {quizzes?.length ?? 0}
           </span>
         </h2>
-        {quizzes && <QuizzesCarousel quizzes={quizzes} />}
+        {quizzes && quizzesViewType === "Carousel" && (
+          <QuizzesCarousel quizzes={quizzes} />
+        )}
+        {quizzes && quizzesViewType === "Table" && (
+          <QuizzesTable quizzes={quizzes} />
+        )}
       </div>
       <div className="mt-4">
         <h2 className="pb-4 text-lg font-semibold">
@@ -49,7 +55,12 @@ export default function Dashboard() {
             {createdQuizzes?.length ?? 0}
           </span>
         </h2>
-        {createdQuizzes && <QuizzesCarousel quizzes={createdQuizzes} />}
+        {createdQuizzes && quizzesViewType === "Carousel" && (
+          <QuizzesCarousel quizzes={createdQuizzes} />
+        )}
+        {createdQuizzes && quizzesViewType === "Table" && (
+          <QuizzesTable quizzes={createdQuizzes} />
+        )}
       </div>
     </main>
   );
