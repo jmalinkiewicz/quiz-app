@@ -31,7 +31,9 @@ export default function Root() {
   return (
     <>
       <Navbar />
-      <Outlet />
+      <main className="m-auto max-w-screen-2xl pt-10">
+        <Outlet />
+      </main>
     </>
   );
 }

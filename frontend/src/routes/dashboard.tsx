@@ -14,8 +14,8 @@ export default function Dashboard() {
   const quizzesViewType = useViewState((state) => state.quizzesViewType);
 
   return (
-    <main className="m-auto max-w-screen-2xl">
-      <div className="flex justify-between pt-10">
+    <>
+      <div className="flex justify-between">
         <h1 className="text-3xl font-bold">Hello, {user?.name}</h1>
         <div className="flex items-center justify-center rounded-full bg-slate-200 p-[2px] text-black">
           <button
@@ -62,6 +62,6 @@ export default function Dashboard() {
           <QuizzesTable quizzes={createdQuizzes} />
         )}
       </div>
-    </main>
+    </>
   );
 }
