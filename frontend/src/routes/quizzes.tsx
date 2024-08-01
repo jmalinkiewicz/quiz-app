@@ -1,3 +1,4 @@
+import InvitePanel from "../components/InvitePanel";
 import QuizzesCarousel from "../components/QuizzesCarousel";
 import QuizzesTable from "../components/Table/QuizzesTable";
 import ViewSwitch from "../components/ViewSwitch";
@@ -28,6 +29,10 @@ export default function Quizzes() {
         {createdQuizzes && quizzesViewType === "Table" && (
           <QuizzesTable quizzes={createdQuizzes} />
         )}
+      </div>
+      <div className="mt-4">
+        <h2 className="pb-4 text-xl font-semibold">Create an invite</h2>
+        <InvitePanel variant="page" />
       </div>
     </>
   );
