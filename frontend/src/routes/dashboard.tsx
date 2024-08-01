@@ -1,5 +1,3 @@
-import SquaresIcon from "../components/icons/Squares";
-import TableIcon from "../components/icons/Table";
 import QuizzesCarousel from "../components/QuizzesCarousel";
 import QuizzesTable from "../components/Table/QuizzesTable";
 import ViewSwitch from "../components/ViewSwitch";
