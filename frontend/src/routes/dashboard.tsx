@@ -1,3 +1,4 @@
+import InvitePanel from "../components/InvitePanel";
 import QuizzesCarousel from "../components/QuizzesCarousel";
 import QuizzesTable from "../components/Table/QuizzesTable";
 import ViewSwitch from "../components/ViewSwitch";
@@ -45,6 +46,12 @@ export default function Dashboard() {
         {createdQuizzes && quizzesViewType === "Table" && (
           <QuizzesTable quizzes={createdQuizzes} />
         )}
+      </div>
+      <div className="mt-4 flex items-start justify-start gap-4">
+        <div className="h-[200px] w-1/2 bg-blue-100"></div>
+        <div className="h-[200px] w-1/2">
+          <InvitePanel variant="dashboard" />
+        </div>
       </div>
     </>
   );
