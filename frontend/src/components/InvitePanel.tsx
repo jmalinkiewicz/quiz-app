@@ -76,7 +76,7 @@ export default function InvitePanel({ variant }: Props) {
                 value={selectedQuiz}
               >
                 {createdQuizzes?.map((quiz) => {
-                  return <option value={quiz.id}>{quiz.id}</option>;
+                  return <option value={quiz.id}>{quiz.title}</option>;
                 })}
               </select>
             </div>
