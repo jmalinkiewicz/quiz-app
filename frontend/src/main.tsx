@@ -13,6 +13,7 @@ import Signup from "./routes/signup.tsx";
 import Cookies from "js-cookie";
 import Dashboard from "./routes/dashboard.tsx";
 import Quizzes from "./routes/quizzes.tsx";
+import Invites from "./routes/invites.tsx";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: "quizzes",
         element: <Quizzes />,
+      },
+      {
+        path: "invites",
+        element: <Invites />,
       },
     ],
   },
