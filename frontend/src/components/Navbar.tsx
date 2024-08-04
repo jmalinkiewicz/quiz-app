@@ -21,7 +21,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="sticky top-0 flex w-full justify-center border-b-2 border-black/50">
+      <nav className="sticky top-0 flex w-full justify-center border-b-2 border-black/50 bg-white">
         <div className="flex w-full max-w-screen-2xl justify-between">
           <div className="flex">
             <NavLink
