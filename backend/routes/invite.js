@@ -167,4 +167,26 @@ router.post("/redeem", authenticate, async (req, res) => {
     });
   }
 }),
-  (exports.inviteRouter = router);
+  router.get("/", authenticate, async (req, res) => {
+    try {
+      const { userId } = req.body;
+
+      const invites = await prisma.invite.findMany({
+        where: {
+          userId,
+        },
+        select: {
+          quiz: true,
+        },
+      });
+
+      res.json(invites);
+    } catch (e) {
+      console.log(e);
+      res.status(500).json({
+        error: "Server error. Please try again.",
+      });
+    }
+  });
+
+exports.inviteRouter = router;
