@@ -3,6 +3,10 @@ import TableBody from "./TableBody";
 import TableHead from "./TableHead";
 
 export default function QuizzesTable({ quizzes }: { quizzes: Quiz[] }) {
+  if (quizzes === undefined || quizzes?.length === 0) {
+    return <h1>No quizzes found</h1>;
+  }
+
   const isOwner = quizzes[0].submissions !== undefined;
 
   return (

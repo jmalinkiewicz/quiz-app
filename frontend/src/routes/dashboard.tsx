@@ -1,5 +1,6 @@
 import InvitePanel from "../components/InvitePanel";
 import QuizzesCarousel from "../components/QuizzesCarousel";
+import RedeemInvitePanel from "../components/RedeemInvitePanel";
 import QuizzesTable from "../components/Table/QuizzesTable";
 import ViewSwitch from "../components/ViewSwitch";
 import { useQuizzesState } from "../state/quizzes";
@@ -48,7 +49,9 @@ export default function Dashboard() {
         )}
       </div>
       <div className="mt-4 flex items-start justify-start gap-4">
-        <div className="h-[200px] w-1/2 bg-blue-100"></div>
+        <div className="h-[200px] w-1/2">
+          <RedeemInvitePanel variant="dashboard" />
+        </div>
         <div className="h-[200px] w-1/2">
           <InvitePanel variant="dashboard" />
         </div>

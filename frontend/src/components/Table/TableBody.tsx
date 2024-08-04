@@ -1,6 +1,10 @@
 import { Quiz } from "../../state/quizzes";
 
 export default function TableBody({ quizzes }: { quizzes: Quiz[] }) {
+  if (quizzes.length === 0 || quizzes === undefined) {
+    return <h1>No quizzes found</h1>;
+  }
+
   return (
     <tbody>
       {quizzes[0].submissions !== undefined &&
@@ -19,7 +23,10 @@ export default function TableBody({ quizzes }: { quizzes: Quiz[] }) {
       {quizzes[0].submissions === undefined &&
         quizzes.map((quiz) => {
           return (
-            <tr className="flex justify-start px-4 py-1.5 text-left odd:bg-slate-100">
+            <tr
+              key={quiz.id}
+              className="flex justify-start px-4 py-1.5 text-left odd:bg-slate-100"
+            >
               <th
                 style={{
                   minWidth: "50%",
