@@ -1,6 +1,6 @@
 export default function TableHead({ isOwner }: { isOwner: boolean }) {
   return (
-    <thead className="bg-blue-100">
+    <thead className="sticky top-0 bg-blue-100">
       {isOwner && (
         <tr className="flex justify-start px-4 text-left">
           <th className="w-1/2">Title</th>
