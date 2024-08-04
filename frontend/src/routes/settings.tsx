@@ -10,7 +10,7 @@ export default function Settings() {
 
   return (
     <>
-      <h1 className="text-3xl font-bold">Your Invites</h1>
+      <h1 className="text-3xl font-bold">Settings</h1>
       <div className="mt-4">
         <button
           className="rounded bg-red-500 px-3 py-1.5 font-semibold text-white hover:bg-red-600"
