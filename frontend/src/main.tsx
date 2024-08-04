@@ -15,6 +15,7 @@ import Dashboard from "./routes/dashboard.tsx";
 import Quizzes from "./routes/quizzes.tsx";
 import Invites from "./routes/invites.tsx";
 import Settings from "./routes/settings.tsx";
+import Quiz from "./routes/quiz.tsx";
 
 const router = createBrowserRouter([
   {
@@ -37,7 +38,16 @@ const router = createBrowserRouter([
       },
       {
         path: "quizzes",
-        element: <Quizzes />,
+        children: [
+          {
+            path: ":quizId",
+            element: <Quiz />,
+          },
+          {
+            path: "",
+            element: <Quizzes />,
+          },
+        ],
       },
       {
         path: "invites",

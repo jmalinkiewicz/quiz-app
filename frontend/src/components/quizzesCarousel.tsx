@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { Quiz } from "../state/quizzes";
 import ChevronDownIcon from "./icons/ChevronDown";
+import { Link } from "react-router-dom";
 
 export default function QuizzesCarousel({ quizzes }: { quizzes: Quiz[] }) {
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -32,19 +33,23 @@ export default function QuizzesCarousel({ quizzes }: { quizzes: Quiz[] }) {
         className={`scrollbar-hide flex h-full w-full space-x-4 overflow-x-scroll bg-white px-2 ${quizzes.length === 0 ? "items-center justify-center" : ""}`}
       >
         {quizzes.map((quiz) => (
-          <div
-            key={quiz.id}
-            className={`min-w-[250px] rounded border-[1px] p-4 pb-1 shadow ${quiz.background}`}
-          >
-            <h3 className="text-lg font-semibold">{quiz.title}</h3>
-            <h4 className="pt-1 text-sm text-gray-500">{quiz.author?.name}</h4>
-            <p className="line-clamp-2 pt-2">{quiz.description}</p>
-            {quiz.submissions !== undefined && (
-              <p className="pb-2 pt-4 text-sm text-gray-700">
-                {quiz.submissions.length} Submissions
-              </p>
-            )}
-          </div>
+          <Link className="min-w-[250px]" to={`/quizzes/${quiz.id}`}>
+            <div
+              key={quiz.id}
+              className={`h-full rounded border-[1px] p-4 pb-1 shadow hover:bg-gray-100 ${quiz.background}`}
+            >
+              <h3 className="text-lg font-semibold">{quiz.title}</h3>
+              <h4 className="pt-1 text-sm text-gray-500">
+                {quiz.author?.name}
+              </h4>
+              <p className="line-clamp-2 pt-2">{quiz.description}</p>
+              {quiz.submissions !== undefined && (
+                <p className="pb-2 pt-4 text-sm text-gray-700">
+                  {quiz.submissions.length} Submissions
+                </p>
+              )}
+            </div>
+          </Link>
         ))}
         {quizzes.length === 0 && (
           <h3 className="text-lg font-semibold">No quizzes found.</h3>
