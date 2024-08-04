@@ -1,4 +1,3 @@
-import InvitePanel from "../components/InvitePanel";
 import QuizzesCarousel from "../components/QuizzesCarousel";
 import RedeemInvitePanel from "../components/RedeemInvitePanel";
 import QuizzesTable from "../components/Table/QuizzesTable";
