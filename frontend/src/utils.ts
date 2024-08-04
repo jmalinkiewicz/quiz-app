@@ -42,6 +42,18 @@ export const getAvailableInvites = async () => {
   return await response.json();
 };
 
+export const getQuizDetails = async (quizId: string) => {
+  const response = await fetch(`http://localhost:8000/quiz/${quizId}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  });
+
+  return await response.json();
+};
+
 export const LogOut = (navigate: (path: string) => void) => {
   useUserState.getState().resetState();
   useQuizzesState.getState().resetState();

@@ -263,4 +263,47 @@ router.get("/results/:quizId", authenticate, async (req, res) => {
   }
 });
 
+router.get("/:quizId", authenticate, async (req, res) => {
+  try {
+    const { quizId } = req.params;
+    const { userId } = req.body;
+
+    const quiz = await prisma.quiz.findUnique({
+      where: {
+        id: quizId,
+      },
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        background: true,
+        authorId: true,
+        author: {
+          select: {
+            name: true,
+          },
+        },
+        submissions: true,
+      },
+    });
+
+    if (quiz === null) {
+      res.status(404).json({
+        error: "Quiz not found.",
+      });
+    }
+
+    if (quiz.authorId !== userId) {
+      delete quiz.submissions;
+    }
+
+    res.json(quiz);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      error: "Server error. Please try again.",
+    });
+  }
+});
+
 exports.quizRouter = router;
