@@ -171,12 +171,24 @@ router.post("/redeem", authenticate, async (req, res) => {
     try {
       const { userId } = req.body;
 
-      const invites = await prisma.invite.findMany({
+      const invites = await prisma.quiz.findMany({
         where: {
-          userId,
+          invites: {
+            some: {
+              userId,
+            },
+          },
         },
         select: {
-          quiz: true,
+          id: true,
+          title: true,
+          description: true,
+          background: true,
+          author: {
+            select: {
+              name: true,
+            },
+          },
         },
       });
 
