@@ -30,15 +30,17 @@ export default function QuizzesCarousel({ quizzes }: { quizzes: Quiz[] }) {
       </button>
       <div
         ref={carouselRef}
-        className={`scrollbar-hide flex h-full w-full space-x-4 overflow-x-scroll bg-white px-2 ${quizzes.length === 0 ? "items-center justify-center" : ""}`}
+        className={`scrollbar-hide flex h-full w-full space-x-4 overflow-y-hidden overflow-x-scroll bg-white px-2 ${quizzes.length === 0 ? "items-center justify-center" : ""}`}
       >
         {quizzes.map((quiz) => (
-          <Link className="min-w-[250px]" to={`/quizzes/${quiz.id}`}>
+          <Link className="w-[250px]" to={`/quizzes/${quiz.id}`}>
             <div
               key={quiz.id}
               className={`h-full rounded border-[1px] p-4 pb-1 shadow hover:bg-gray-100 ${quiz.background}`}
             >
-              <h3 className="text-lg font-semibold">{quiz.title}</h3>
+              <h3 className="line-clamp-1 text-lg font-semibold">
+                {quiz.title}
+              </h3>
               <h4 className="pt-1 text-sm text-gray-500">
                 {quiz.author?.name}
               </h4>
