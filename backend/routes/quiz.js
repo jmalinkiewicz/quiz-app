@@ -291,6 +291,7 @@ router.get("/:quizId", authenticate, async (req, res) => {
       res.status(404).json({
         error: "Quiz not found.",
       });
+      return;
     }
 
     if (quiz.authorId !== userId) {
@@ -298,6 +299,68 @@ router.get("/:quizId", authenticate, async (req, res) => {
     }
 
     res.json(quiz);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      error: "Server error. Please try again.",
+    });
+  }
+});
+
+router.delete("/:quizId", authenticate, async (req, res) => {
+  try {
+    const { quizId } = req.params;
+    const { userId } = req.body;
+
+    const quiz = await prisma.quiz.findUnique({
+      where: {
+        id: quizId,
+      },
+    });
+
+    if (quiz === null) {
+      res.status(404).json({
+        error: "Quiz not found.",
+      });
+      return;
+    }
+
+    if (quiz.authorId !== userId) {
+      res.status(403).json({
+        error: "You are not authorized to delete this quiz.",
+      });
+      return;
+    }
+
+    await prisma.invite.deleteMany({
+      where: {
+        quizId,
+      },
+    });
+
+    await prisma.answer.deleteMany({
+      where: {
+        question: {
+          quizId,
+        },
+      },
+    });
+
+    await prisma.question.deleteMany({
+      where: {
+        quizId,
+      },
+    });
+
+    await prisma.quiz.delete({
+      where: {
+        id: quizId,
+      },
+    });
+
+    res.status(200).json({
+      message: "Quiz deleted.",
+    });
   } catch (e) {
     console.log(e);
     res.status(500).json({

@@ -1,5 +1,6 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { useQuizzesState } from "../state/quizzes";
+import { deleteQuiz, getCreatedQuizzes } from "../utils";
 
 export type QuizDetails = {
   id: string;
@@ -15,12 +16,28 @@ export type QuizDetails = {
 
 export default function Quiz() {
   const data: QuizDetails = useLoaderData() as QuizDetails;
-  const { availableQuizzes } = useQuizzesState();
+  const { availableQuizzes, setCreatedQuizzes } = useQuizzesState();
+  const navigate = useNavigate();
 
   let hasInvite: boolean = false;
 
   if (availableQuizzes) {
     hasInvite = availableQuizzes.some((quiz) => quiz.id === data.id);
+  }
+
+  async function handleDeleteQuiz() {
+    const response = await deleteQuiz(data.id);
+
+    switch (response.status) {
+      case 200:
+        navigate("/dashboard");
+        const createdQuizzes = await getCreatedQuizzes();
+        setCreatedQuizzes(createdQuizzes);
+        break;
+      default:
+        console.log("Error deleting quiz");
+        break;
+    }
   }
 
   return (
@@ -46,7 +63,10 @@ export default function Quiz() {
               </button>
             )}
             {data.submissions && (
-              <button className="mt-4 rounded bg-red-500 px-10 py-2 font-bold text-white hover:bg-red-600">
+              <button
+                onClick={handleDeleteQuiz}
+                className="mt-4 rounded bg-red-500 px-10 py-2 font-bold text-white hover:bg-red-600"
+              >
                 DELETE
               </button>
             )}
