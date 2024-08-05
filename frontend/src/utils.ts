@@ -1,3 +1,4 @@
+import { QuizDetails } from "./routes/quiz";
 import { useQuizzesState } from "./state/quizzes";
 import { useUserState } from "./state/user";
 import Cookies from "js-cookie";
@@ -51,7 +52,7 @@ export const getQuizDetails = async (quizId: string) => {
     credentials: "include",
   });
 
-  return await response.json();
+  return (await response.json()) as QuizDetails;
 };
 
 export const LogOut = (navigate: (path: string) => void) => {

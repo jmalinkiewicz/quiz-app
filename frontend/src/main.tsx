@@ -16,6 +16,7 @@ import Quizzes from "./routes/quizzes.tsx";
 import Invites from "./routes/invites.tsx";
 import Settings from "./routes/settings.tsx";
 import Quiz from "./routes/quiz.tsx";
+import { getQuizDetails } from "./utils.ts";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,13 @@ const router = createBrowserRouter([
           {
             path: ":quizId",
             element: <Quiz />,
+            loader: async ({ params }) => {
+              if (params.quizId === undefined) {
+                throw redirect("/quizzes");
+              }
+
+              return await getQuizDetails(params.quizId);
+            },
           },
           {
             path: "",

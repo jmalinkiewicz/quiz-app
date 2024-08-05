@@ -59,3 +59,35 @@ html {
 .GREY {
   border-bottom: 6px solid #718096;
 }
+
+.BG-BLUE {
+  background-color: #3182ce;
+}
+
+.BG-GREEN {
+  background-color: #38a169;
+}
+
+.BG-RED {
+  background-color: #e53e3e;
+}
+
+.BG-YELLOW {
+  background-color: #f6e05e;
+}
+
+.BG-PURPLE {
+  background-color: #805ad5;
+}
+
+.BG-ORANGE {
+  background-color: #dd6b20;
+}
+
+.BG-PINK {
+  background-color: #f687b3;
+}
+
+.BG-GREY {
+  background-color: #718096;
+}
