@@ -67,6 +67,18 @@ export const deleteQuiz = async (quizId: string) => {
   return response;
 };
 
+export const getQuizStart = async (quizId: string) => {
+  const response = await fetch(`http://localhost:8000/quiz/start/${quizId}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  });
+
+  return response;
+};
+
 export const LogOut = (navigate: (path: string) => void) => {
   useUserState.getState().resetState();
   useQuizzesState.getState().resetState();

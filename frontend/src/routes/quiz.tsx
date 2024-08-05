@@ -1,4 +1,4 @@
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { useQuizzesState } from "../state/quizzes";
 import { deleteQuiz, getCreatedQuizzes } from "../utils";
 
@@ -58,9 +58,12 @@ export default function Quiz() {
           )}
           <div className="flex justify-between">
             {hasInvite && (
-              <button className="mt-4 rounded bg-green-500 px-10 py-2 font-bold text-white hover:bg-green-600">
+              <Link
+                to={`/quizzes/${data.id}/start`}
+                className="mt-4 block rounded bg-green-500 px-10 py-2 font-bold text-white hover:bg-green-600"
+              >
                 START
-              </button>
+              </Link>
             )}
             {data.submissions && (
               <button
