@@ -1,6 +1,6 @@
 import QuizzesCarousel from "../components/QuizzesCarousel";
 import RedeemInvitePanel from "../components/RedeemInvitePanel";
-import QuizzesTable from "../components/Table/QuizzesTable";
+import QuizzesTable from "../components/QuizzesTable/QuizzesTable";
 import ViewSwitch from "../components/ViewSwitch";
 import { useQuizzesState } from "../state/quizzes";
 import { useViewState } from "../state/view";
