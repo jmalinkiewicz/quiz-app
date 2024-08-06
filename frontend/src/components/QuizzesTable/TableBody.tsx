@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Quiz } from "../../state/quizzes";
+import { Quiz } from "../../definitions";
 
 export default function TableBody({ quizzes }: { quizzes: Quiz[] }) {
   if (quizzes.length === 0 || quizzes === undefined) {

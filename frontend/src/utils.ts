@@ -1,4 +1,4 @@
-import { QuizDetails } from "./definitions";
+import { QuizDetails, QuizStartData } from "./definitions";
 import { useQuizzesState } from "./state/quizzes";
 import { useUserState } from "./state/user";
 import Cookies from "js-cookie";
@@ -73,6 +73,19 @@ export const getQuizStart = async (quizId: string) => {
     headers: {
       "Content-Type": "application/json",
     },
+    credentials: "include",
+  });
+
+  return (await response.json()) as QuizStartData;
+};
+
+export const submitQuiz = async (quizId: string, answers: string[]) => {
+  const response = await fetch(`http://localhost:8000/quiz/submit`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ quizId, answers }),
     credentials: "include",
   });
 

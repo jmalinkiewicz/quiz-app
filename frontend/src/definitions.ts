@@ -21,7 +21,7 @@ export type QuizDetails = {
   submissions?: any[];
 };
 
-export type QuizStart = {
+export type QuizStartData = {
   id: string;
   title: string;
   description: string;
