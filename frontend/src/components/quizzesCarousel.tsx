@@ -1,7 +1,7 @@
 import { useRef } from "react";
-import { Quiz } from "../state/quizzes";
 import ChevronDownIcon from "./icons/ChevronDown";
 import { Link } from "react-router-dom";
+import { Quiz } from "../definitions";
 
 export default function QuizzesCarousel({ quizzes }: { quizzes: Quiz[] }) {
   const carouselRef = useRef<HTMLDivElement>(null);

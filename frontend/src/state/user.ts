@@ -1,11 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-
-type User = {
-  id: string;
-  name: string;
-  email: string;
-};
+import { User } from "../definitions";
 
 interface UserState {
   user: User | null;

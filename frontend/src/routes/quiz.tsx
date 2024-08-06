@@ -1,18 +1,7 @@
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { useQuizzesState } from "../state/quizzes";
 import { deleteQuiz, getCreatedQuizzes } from "../utils";
-
-export type QuizDetails = {
-  id: string;
-  title: string;
-  description: string;
-  background: string;
-  authorId: string;
-  author: {
-    name: string;
-  };
-  submissions?: any[];
-};
+import { QuizDetails } from "../definitions";
 
 export default function Quiz() {
   const data: QuizDetails = useLoaderData() as QuizDetails;

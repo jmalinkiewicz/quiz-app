@@ -1,4 +1,4 @@
-import { QuizDetails } from "./routes/quiz";
+import { QuizDetails } from "./definitions";
 import { useQuizzesState } from "./state/quizzes";
 import { useUserState } from "./state/user";
 import Cookies from "js-cookie";

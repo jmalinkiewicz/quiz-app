@@ -1,16 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-
-export type Quiz = {
-  id: string;
-  title: string;
-  description: string;
-  background: string;
-  author: {
-    name: string;
-  };
-  submissions?: [];
-};
+import { Quiz } from "../definitions";
 
 interface QuizState {
   createdQuizzes: Quiz[] | null;
