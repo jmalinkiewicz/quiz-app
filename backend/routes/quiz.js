@@ -185,9 +185,15 @@ router.post("/submit", authenticate, async (req, res) => {
           },
         },
         answers: {
-          connect: answers.map((answer) => ({
-            id: answer,
-          })),
+          create: answers.map((answer) => {
+            return {
+              answer: {
+                connect: {
+                  id: answer,
+                },
+              },
+            };
+          }),
         },
       },
     });
@@ -201,7 +207,7 @@ router.post("/submit", authenticate, async (req, res) => {
       },
     });
 
-    res.json(submission);
+    res.status(200).json(submission);
   } catch (e) {
     console.log(e);
     res.status(500).json({

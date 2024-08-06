@@ -49,8 +49,7 @@ model Answer {
   isCorrect Boolean
   question Question @relation(fields: [questionId], references: [id])
   questionId String
-  submissions Submission? @relation(fields: [submissionId], references: [id])
-  submissionId String?
+  submissions AnswersOnSubmissions[]
 }
 
 model Invite {
@@ -69,7 +68,15 @@ model Submission {
   userId String
   quiz Quiz @relation(fields: [quizId], references: [id])
   quizId String
-  answers Answer[]
+  answers AnswersOnSubmissions[]
+}
+
+model AnswersOnSubmissions {
+  id String @id @default(cuid())
+  submission Submission @relation(fields: [submissionId], references: [id])
+  submissionId String
+  answer Answer @relation(fields: [answerId], references: [id])
+  answerId String
 }
 
 enum Color {
