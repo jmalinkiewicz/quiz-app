@@ -1,23 +1,23 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { Quiz } from "../definitions";
+import { Invite, Quiz } from "../definitions";
 
 interface QuizState {
-  createdQuizzes: Quiz[] | null;
-  availableQuizzes: Quiz[] | null;
+  createdQuizzes: Quiz[];
+  availableQuizzes: Invite[];
   setCreatedQuizzes: (quizzes: Quiz[]) => void;
-  setAvailableQuizzes: (quizzes: Quiz[]) => void;
+  setAvailableQuizzes: (quizzes: Invite[]) => void;
   resetState: () => void;
 }
 
 export const useQuizzesState = create<QuizState>()(
   persist(
     (set) => ({
-      createdQuizzes: null,
-      availableQuizzes: null,
+      createdQuizzes: [],
+      availableQuizzes: [],
       setCreatedQuizzes: (quizzes) => set({ createdQuizzes: quizzes }),
       setAvailableQuizzes: (quizzes) => set({ availableQuizzes: quizzes }),
-      resetState: () => set({ createdQuizzes: null, availableQuizzes: null }),
+      resetState: () => set({ createdQuizzes: [], availableQuizzes: [] }),
     }),
     {
       name: "quizzes-storage",

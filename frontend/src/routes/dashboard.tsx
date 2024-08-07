@@ -9,7 +9,7 @@ import { getUser } from "../utils";
 
 export default function Dashboard() {
   const user = getUser();
-  const quizzes = useQuizzesState((state) => state.availableQuizzes);
+  const invites = useQuizzesState((state) => state.availableQuizzes);
   const createdQuizzes = useQuizzesState((state) => state.createdQuizzes);
 
   const quizzesViewType = useViewState((state) => state.quizzesViewType);
@@ -24,14 +24,16 @@ export default function Dashboard() {
         <h2 className="pb-4 text-lg font-semibold">
           Invites:{" "}
           <span className="rounded bg-slate-300 px-1.5">
-            {quizzes?.length ?? 0}
+            {invites !== undefined
+              ? (invites?.filter((invite) => !invite.isUsed).length ?? 0)
+              : 0}
           </span>
         </h2>
-        {quizzes && quizzesViewType === "Carousel" && (
-          <QuizzesCarousel quizzes={quizzes} />
+        {invites && quizzesViewType === "Carousel" && (
+          <QuizzesCarousel invites={invites} />
         )}
-        {quizzes && quizzesViewType === "Table" && (
-          <QuizzesTable quizzes={quizzes} />
+        {invites && quizzesViewType === "Table" && (
+          <QuizzesTable invites={invites} />
         )}
       </div>
       <div className="mt-4">

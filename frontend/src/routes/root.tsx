@@ -2,7 +2,7 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { useEffect } from "react";
 import { useQuizzesState } from "../state/quizzes";
-import { getAvailableQuizzes, getCreatedQuizzes } from "../utils";
+import { getAvailableInvites, getCreatedQuizzes } from "../utils";
 
 export default function Root() {
   const location = useLocation();
@@ -21,7 +21,7 @@ export default function Root() {
       const createdQuizzes = await getCreatedQuizzes();
       setCreatedQuizzes(createdQuizzes);
 
-      const availableQuizzes = await getAvailableQuizzes();
+      const availableQuizzes = await getAvailableInvites();
       setAvailableQuizzes(availableQuizzes);
     }
 

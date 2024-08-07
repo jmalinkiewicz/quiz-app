@@ -19,18 +19,6 @@ export const getCreatedQuizzes = async () => {
   return await response.json();
 };
 
-export const getAvailableQuizzes = async () => {
-  const response = await fetch("http://localhost:8000/quiz/available", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    credentials: "include",
-  });
-
-  return await response.json();
-};
-
 export const getAvailableInvites = async () => {
   const response = await fetch("http://localhost:8000/invite", {
     method: "GET",

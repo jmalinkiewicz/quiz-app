@@ -6,7 +6,7 @@ import { useQuizzesState } from "../state/quizzes";
 import { useViewState } from "../state/view";
 
 export default function Invites() {
-  const availableQuizzes = useQuizzesState((state) => state.availableQuizzes);
+  const invites = useQuizzesState((state) => state.availableQuizzes);
 
   const quizzesViewType = useViewState((state) => state.quizzesViewType);
 
@@ -20,14 +20,16 @@ export default function Invites() {
         <h2 className="pb-4 text-lg font-semibold">
           Your Invites:{" "}
           <span className="rounded bg-slate-300 px-1.5">
-            {availableQuizzes?.length ?? 0}
+            {invites !== undefined
+              ? (invites?.filter((invite) => !invite.isUsed).length ?? 0)
+              : 0}
           </span>
         </h2>
-        {availableQuizzes && quizzesViewType === "Carousel" && (
-          <QuizzesCarousel quizzes={availableQuizzes} />
+        {invites && quizzesViewType === "Carousel" && (
+          <QuizzesCarousel invites={invites} />
         )}
-        {availableQuizzes && quizzesViewType === "Table" && (
-          <QuizzesTable quizzes={availableQuizzes} />
+        {invites && quizzesViewType === "Table" && (
+          <QuizzesTable invites={invites} />
         )}
       </div>
       <div className="mt-4">

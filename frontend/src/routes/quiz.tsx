@@ -11,7 +11,9 @@ export default function Quiz() {
   let hasInvite: boolean = false;
 
   if (availableQuizzes) {
-    hasInvite = availableQuizzes.some((quiz) => quiz.id === data.id);
+    hasInvite = availableQuizzes.some(
+      (invite) => invite.quiz.id === data.id && !invite.isUsed,
+    );
   }
 
   async function handleDeleteQuiz() {

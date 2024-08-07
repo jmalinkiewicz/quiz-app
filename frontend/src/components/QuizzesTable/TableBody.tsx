@@ -1,31 +1,37 @@
 import { Link } from "react-router-dom";
-import { Quiz } from "../../definitions";
+import { Invite, Quiz } from "../../definitions";
 
-export default function TableBody({ quizzes }: { quizzes: Quiz[] }) {
-  if (quizzes.length === 0 || quizzes === undefined) {
-    return <h1>No quizzes found</h1>;
-  }
-
+export default function TableBody({
+  quizzes,
+  invites,
+}: {
+  quizzes?: Quiz[];
+  invites?: Invite[];
+}) {
   return (
     <tbody>
-      {quizzes[0].submissions !== undefined &&
-        quizzes.map((quiz) => {
+      {invites !== undefined &&
+        invites.map((invite) => {
+          if (invite.isUsed) return null;
+
           return (
-            <Link to={`/quizzes/${quiz.id}`}>
+            <Link to={`/quizzes/${invite.quiz.id}`}>
               <tr className="flex justify-start px-4 py-1.5 text-left odd:bg-slate-100 hover:bg-blue-200/35">
-                <th className="w-1/2 font-normal">{quiz.title}</th>
-                <th className="w-2/12 font-normal">{quiz.author.name}</th>
+                <th className="w-1/2 font-normal">{invite.quiz.title}</th>
+                <th className="w-2/12 font-normal">
+                  {invite.quiz.author.name}
+                </th>
                 <th className="line-clamp-2 w-2/12 font-normal">
-                  {quiz.description}
+                  {invite.quiz.description}
                 </th>
                 <th className="w-2/12 font-normal">
-                  {quiz.submissions?.length}
+                  {invite.quiz.submissions?.length}
                 </th>
               </tr>
             </Link>
           );
         })}
-      {quizzes[0].submissions === undefined &&
+      {quizzes !== undefined &&
         quizzes.map((quiz) => {
           return (
             <Link to={`/quizzes/${quiz.id}`}>

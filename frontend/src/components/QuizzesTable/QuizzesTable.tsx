@@ -1,19 +1,29 @@
-import { Quiz } from "../../state/quizzes";
+import { Invite, Quiz } from "../../definitions";
 import TableBody from "./TableBody";
 import TableHead from "./TableHead";
 
-export default function QuizzesTable({ quizzes }: { quizzes: Quiz[] }) {
-  if (quizzes === undefined || quizzes?.length === 0) {
-    return <h1>No quizzes found</h1>;
-  }
-
-  const isOwner = quizzes[0].submissions !== undefined;
-
+export default function QuizzesTable({
+  quizzes,
+  invites,
+}: {
+  quizzes?: Quiz[];
+  invites?: Invite[];
+}) {
   return (
     <div className="max-h-[220px] w-full overflow-y-scroll rounded border-[1px] bg-slate-50 shadow">
       <table className="w-full">
-        <TableHead isOwner={isOwner} />
-        <TableBody quizzes={quizzes} />
+        {invites !== undefined && (
+          <>
+            <TableHead isOwner={false} />
+            <TableBody invites={invites} />
+          </>
+        )}
+        {quizzes !== undefined && (
+          <>
+            <TableHead isOwner={true} />
+            <TableBody quizzes={quizzes} />
+          </>
+        )}
       </table>
     </div>
   );

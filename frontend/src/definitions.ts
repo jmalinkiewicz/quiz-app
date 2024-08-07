@@ -9,6 +9,12 @@ export type Quiz = {
   submissions?: [];
 };
 
+export type Invite = {
+  id: string;
+  isUsed: boolean;
+  quiz: Quiz;
+};
+
 export type QuizDetails = {
   id: string;
   title: string;
