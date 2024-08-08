@@ -29,6 +29,7 @@ export default function TableBody({
         })}
       {invites !== undefined &&
         invites.map((invite) => {
+          if (invite.isUsed) return null;
           return (
             <Link to={`/quizzes/${invite.quiz.id}`}>
               <tr

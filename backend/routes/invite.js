@@ -70,7 +70,9 @@ router.post("/", authenticate, async (req, res) => {
         return;
       }
 
-      if (user.invites.some((invite) => invite.quizId === quizId)) {
+      if (
+        user.invites.some((invite) => invite.quizId === quizId && invite.isUsed)
+      ) {
         res.status(403).json({
           error: "This user has already been invited to this quiz.",
         });
