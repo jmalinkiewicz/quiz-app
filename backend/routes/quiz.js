@@ -275,6 +275,52 @@ router.get("/results/:quizId", authenticate, async (req, res) => {
   }
 });
 
+router.get("/submission/:submissionId", authenticate, async (req, res) => {
+  try {
+    const { submissionId } = req.params;
+    const { userId } = req.body;
+
+    const submission = await prisma.submission.findUnique({
+      where: {
+        id: submissionId,
+      },
+      select: {
+        quiz: {
+          select: {
+            authorId: true,
+          },
+        },
+        answers: {
+          select: {
+            answerId: true,
+          },
+        },
+      },
+    });
+
+    if (submission === null) {
+      res.status(404).json({
+        error: "Submission not found.",
+      });
+      return;
+    }
+
+    if (submission.quiz.authorId !== userId) {
+      res.status(403).json({
+        error: "You are not authorized to view this submission.",
+      });
+      return;
+    }
+
+    res.json(submission);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      error: "Server error. Please try again.",
+    });
+  }
+});
+
 router.get("/:quizId", authenticate, async (req, res) => {
   try {
     const { quizId } = req.params;
