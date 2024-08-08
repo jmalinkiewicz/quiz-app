@@ -111,7 +111,7 @@ router.get("/start/:quizId", authenticate, async (req, res) => {
       },
     });
 
-    if (invite === null) {
+    if (invite === null && creatorMode !== "y") {
       res.status(403).json({
         error: "Invite not found.",
       });

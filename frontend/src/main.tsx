@@ -18,6 +18,7 @@ import Settings from "./routes/settings.tsx";
 import Quiz from "./routes/quiz.tsx";
 import { getQuizDetails, getQuizStart } from "./utils.ts";
 import QuizStart from "./routes/quizStart.tsx";
+import Submission from "./routes/submission.tsx";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,20 @@ const router = createBrowserRouter([
                   }
 
                   return await getQuizDetails(params.quizId);
+                },
+              },
+              {
+                path: "submission/:submissionId",
+                element: <Submission />,
+                loader: async ({ params }) => {
+                  if (
+                    params.submissionId === undefined ||
+                    params.quizId === undefined
+                  ) {
+                    throw redirect("/quizzes");
+                  }
+
+                  return await getQuizStart(params.quizId, true);
                 },
               },
             ],

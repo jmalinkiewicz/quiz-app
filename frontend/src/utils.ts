@@ -55,14 +55,17 @@ export const deleteQuiz = async (quizId: string) => {
   return response;
 };
 
-export const getQuizStart = async (quizId: string) => {
-  const response = await fetch(`http://localhost:8000/quiz/start/${quizId}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
+export const getQuizStart = async (quizId: string, creatorMode?: boolean) => {
+  const response = await fetch(
+    `http://localhost:8000/quiz/start/${quizId}${creatorMode && "?creatorMode=y"}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
     },
-    credentials: "include",
-  });
+  );
 
   return (await response.json()) as QuizStartData;
 };
