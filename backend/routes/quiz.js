@@ -70,6 +70,7 @@ router.get("/start/:quizId", authenticate, async (req, res) => {
   try {
     const { quizId } = req.params;
     const { userId } = req.body;
+    const creatorMode = req.query.creatorMode;
 
     const quiz = await prisma.quiz.findUnique({
       where: {
@@ -88,6 +89,7 @@ router.get("/start/:quizId", authenticate, async (req, res) => {
               select: {
                 id: true,
                 text: true,
+                isCorrect: creatorMode === "y" ? true : false,
               },
             },
           },
@@ -255,7 +257,11 @@ router.get("/results/:quizId", authenticate, async (req, res) => {
             name: true,
           },
         },
-        answers: true,
+        answers: {
+          select: {
+            answerId: true,
+          },
+        },
         quizId: true,
       },
     });
@@ -289,7 +295,22 @@ router.get("/:quizId", authenticate, async (req, res) => {
             name: true,
           },
         },
-        submissions: true,
+        submissions: {
+          select: {
+            id: true,
+            user: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+            answers: {
+              select: {
+                answerId: true,
+              },
+            },
+          },
+        },
       },
     });
 

@@ -15,6 +15,19 @@ export type Invite = {
   quiz: Quiz;
 };
 
+export type Submission = {
+  id: string;
+  user: {
+    id: string;
+    name: string;
+  };
+  answers: {
+    id: string;
+    submissionId: string;
+    answerId: string;
+  }[];
+};
+
 export type QuizDetails = {
   id: string;
   title: string;

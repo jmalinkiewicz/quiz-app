@@ -2,19 +2,16 @@ import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { useQuizzesState } from "../state/quizzes";
 import { deleteQuiz, getCreatedQuizzes } from "../utils";
 import { QuizDetails } from "../definitions";
+import SubmissionsTable from "../components/SubmissionsTable/SubmissionsTable";
 
 export default function Quiz() {
   const data: QuizDetails = useLoaderData() as QuizDetails;
   const { availableQuizzes, setCreatedQuizzes } = useQuizzesState();
   const navigate = useNavigate();
 
-  let hasInvite: boolean = false;
-
-  if (availableQuizzes) {
-    hasInvite = availableQuizzes.some(
-      (invite) => invite.quiz.id === data.id && !invite.isUsed,
-    );
-  }
+  let hasInvite = availableQuizzes.some(
+    (invite) => !invite.isUsed && invite.quiz.id === data.id,
+  );
 
   async function handleDeleteQuiz() {
     const response = await deleteQuiz(data.id);
@@ -65,6 +62,14 @@ export default function Quiz() {
               </button>
             )}
           </div>
+          {data.submissions && (
+            <div className="pt-10">
+              <h2 className="text-2xl font-semibold">Submissions</h2>
+              <div className="pt-4">
+                <SubmissionsTable submissions={data.submissions} />
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </>
