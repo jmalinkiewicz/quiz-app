@@ -71,7 +71,9 @@ router.post("/", authenticate, async (req, res) => {
       }
 
       if (
-        user.invites.some((invite) => invite.quizId === quizId && invite.isUsed)
+        user.invites.some(
+          (invite) => invite.quizId === quizId && !invite.isUsed
+        )
       ) {
         res.status(403).json({
           error: "This user has already been invited to this quiz.",
@@ -133,7 +135,11 @@ router.post("/redeem", authenticate, async (req, res) => {
       return;
     }
 
-    if (user.invites.some((invite) => invite.quizId === quiz.quizId)) {
+    if (
+      user.invites.some(
+        (invite) => invite.quizId === quiz.quizId && !invite.isUsed
+      )
+    ) {
       res.status(403).json({
         error: "You have already been invited to this quiz.",
       });
