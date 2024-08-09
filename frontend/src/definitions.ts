@@ -48,6 +48,21 @@ export type QuizStartData = {
   questions: Question[];
 };
 
+export type SubmissionPageData = {
+  quiz: QuizStartData;
+  submission: {
+    user: {
+      name: string;
+    };
+    quiz: {
+      authorId: string;
+    };
+    answers: {
+      answerId: string;
+    }[];
+  };
+};
+
 export type Question = {
   id: string;
   text: string;
@@ -57,6 +72,7 @@ export type Question = {
 export type Answer = {
   id: string;
   text: string;
+  isCorrect?: boolean;
 };
 
 export type User = {

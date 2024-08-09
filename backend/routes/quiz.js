@@ -285,6 +285,11 @@ router.get("/submission/:submissionId", authenticate, async (req, res) => {
         id: submissionId,
       },
       select: {
+        user: {
+          select: {
+            name: true,
+          },
+        },
         quiz: {
           select: {
             authorId: true,
