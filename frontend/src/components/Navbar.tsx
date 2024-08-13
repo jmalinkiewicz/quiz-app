@@ -70,7 +70,14 @@ export default function Navbar() {
               onClick={() => setIsOpen(!isOpen)}
               className="flex gap-2 font-semibold hover:underline"
             >
-              {user?.name} <ChevronDownIcon />
+              {user?.name}{" "}
+              {!isOpen ? (
+                <ChevronDownIcon />
+              ) : (
+                <span className="rotate-180 transform">
+                  <ChevronDownIcon />
+                </span>
+              )}
             </button>
             <AnimatePresence>
               {isOpen && (
@@ -84,7 +91,7 @@ export default function Navbar() {
                   exit={{
                     scale: 0,
                   }}
-                  className="absolute right-1 top-20 flex w-36 flex-col items-start gap-1 rounded bg-gray-100 px-4 py-2 text-left font-semibold"
+                  className="absolute right-1 top-20 z-50 flex w-36 flex-col items-start gap-1 rounded bg-gray-100 px-4 py-2 text-left font-semibold"
                 >
                   <Link to="/quizzes" className="flex gap-2">
                     <span>My Quizzes</span>
