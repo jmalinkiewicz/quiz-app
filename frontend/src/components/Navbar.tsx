@@ -64,6 +64,13 @@ export default function Navbar() {
             >
               <button className="px-4 py-4">Settings</button>
             </NavLink>
+            <NavLink to="/create">
+              <button className="px-4 py-4">
+                <span className="rounded bg-blue-500 p-2 font-semibold text-white hover:bg-blue-400">
+                  Create Quiz
+                </span>
+              </button>
+            </NavLink>
           </div>
           <div className="relative flex items-center justify-start">
             <button

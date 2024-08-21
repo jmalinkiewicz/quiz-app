@@ -19,6 +19,7 @@ import Quiz from "./routes/quiz.tsx";
 import { getQuizDetails, getQuizStart, getSubmission } from "./utils.ts";
 import QuizStart from "./routes/quizStart.tsx";
 import Submission from "./routes/submission.tsx";
+import Create from "./routes/create.tsx";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "dashboard",
         element: <Dashboard />,
+      },
+      {
+        path: "create",
+        element: <Create />,
       },
       {
         path: "quizzes",
