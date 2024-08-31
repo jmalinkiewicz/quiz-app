@@ -80,3 +80,13 @@ export type User = {
   name: string;
   email: string;
 };
+
+export type BG =
+  | "RED"
+  | "BLUE"
+  | "GREEN"
+  | "YELLOW"
+  | "PURPLE"
+  | "ORANGE"
+  | "PINK"
+  | "GREY";
