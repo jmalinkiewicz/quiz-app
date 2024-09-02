@@ -34,7 +34,7 @@ interface CreateState {
 export const useCreateState = create<CreateState>((set) => ({
   title: "",
   description: "",
-  background: "",
+  background: "BLUE",
   content: [],
   setTitle: (title) => set({ title }),
   setDescription: (description) => set({ description }),
@@ -75,7 +75,7 @@ export const useCreateState = create<CreateState>((set) => ({
     set({
       title: "",
       description: "",
-      background: "",
+      background: "BLUE",
       content: [],
     }),
 }));

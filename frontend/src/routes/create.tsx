@@ -3,9 +3,12 @@ import PlusIcon from "../components/icons/Plus";
 import { useCreateState } from "../state/create";
 import { BG } from "../definitions";
 import TrashIcon from "../components/icons/Trash";
+import { useNavigate } from "react-router-dom";
 
 export default function Create() {
   const [question, setQuestion] = useState("");
+
+  const navigate = useNavigate();
 
   const {
     setTitle,
@@ -67,9 +70,8 @@ export default function Create() {
     if (response.ok) {
       resetState();
       setQuestion("");
+      navigate("/dashboard");
     }
-
-    console.log(response);
   }
 
   return (
