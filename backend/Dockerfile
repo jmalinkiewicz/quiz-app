@@ -1,19 +1,19 @@
-FROM node
+FROM node:alpine
 
-RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
+RUN mkdir -p /usr/src/app
 
-WORKDIR /home/node/app
+WORKDIR /usr/src/app
 
-COPY package*.json ./
+ARG DATABASE_URL
+ARG SECRET_KEY
+
+ENV DATABASE_URL=${DATABASE_URL}
+ENV SECRET_KEY=${SECRET_KEY}
+
+COPY . /usr/src/app
 
 RUN npm install
 
-COPY prisma ./prisma
+EXPOSE 3000
 
 RUN npx prisma generate
-
-COPY --chown=node:node . .
-
-EXPOSE 8000
-
-CMD [ "node", "server.js" ]

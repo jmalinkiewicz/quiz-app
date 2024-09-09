@@ -6,6 +6,17 @@ services:
     build:
       context: frontend
       dockerfile: Dockerfile
+  db:
+    container_name: db
+    image: postgres:16
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - quiz-db:/var/lib/postgresql/data
   backend:
     container_name: backend
     ports:
@@ -13,22 +24,12 @@ services:
     build:
       context: backend
       dockerfile: Dockerfile
-    environment:
-      DATABASE_URL: "postgresql://postgres:postgres@db:5432/postgres"
-      SECRET_KEY: "secret"
+      args:
+        SECRET_KEY: secret
+        DATABASE_URL: postgresql://postgres:postgres@db:5432/postgres?schema=public&connection_timeout=300
     depends_on:
       - db
-  db:
-    container_name: db
-    image: postgres:16
-    ports:
-      - "4000:5432"
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
-    volumes:
-      - quiz-db:/var/lib/postgresql/data
+    command: sh -c "npx prisma migrate dev --name init && node server.js"
 
 volumes:
   quiz-db:

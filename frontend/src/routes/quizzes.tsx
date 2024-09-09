@@ -1,5 +1,5 @@
 import InvitePanel from "../components/InvitePanel";
-import QuizzesCarousel from "../components/QuizzesCarousel";
+import QuizzesCarousel from "../components/quizzesCarousel";
 import QuizzesTable from "../components/QuizzesTable/QuizzesTable";
 import ViewSwitch from "../components/ViewSwitch";
 import { useQuizzesState } from "../state/quizzes";
