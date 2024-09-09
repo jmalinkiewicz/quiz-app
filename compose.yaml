@@ -4,14 +4,14 @@ services:
     ports:
       - "3000:3000"
     build:
-      context: /frontend
+      context: frontend
       dockerfile: Dockerfile
   backend:
     container_name: backend
     ports:
       - "8000:8000"
     build:
-      context: /backend
+      context: backend
       dockerfile: Dockerfile
     environment:
       DATABASE_URL: "postgresql://postgres:postgres@db:5432/postgres"
